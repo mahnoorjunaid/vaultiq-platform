@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { PortfolioSummary, PortfolioItem } from '../components';
 import { usePortfolio } from '../context/PortfolioContext';
 import { formatPKR, formatReturn } from '../utils/finance';
+import PortfolioCard from "../components/PortfolioCard";
 
 export default function Portfolio() {
   const { items, stats, removeFromPortfolio, updateAllocation } = usePortfolio();
