@@ -28,7 +28,11 @@
   --risk-high-bg: #fef0f0;
   --t: all 0.22s ease;
 }
-
+/* Global UI Styling Rules
+   - Consistent spacing system
+   - Clean typography
+   - Responsive base layout
+*/
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
