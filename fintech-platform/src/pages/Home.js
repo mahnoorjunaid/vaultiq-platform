@@ -1,3 +1,8 @@
+// Home Page Component
+// Displays main dashboard overview of the fintech platform
+// Includes portfolio summary, navigation, and quick actions
+
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductCard } from '../components';
