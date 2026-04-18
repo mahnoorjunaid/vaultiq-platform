@@ -34,7 +34,10 @@ const categoryMapping = {
   "men's clothing": 'insurance',
   "women's clothing": 'crypto',
 };
-
+// Calculates simple annual return
+export const calculateAnnualReturn = (principal, rate) => {
+  return principal * (rate / 100);
+};
 const riskMapping = {
   investment: 'medium',
   savings: 'low',
