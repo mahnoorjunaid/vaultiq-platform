@@ -44,6 +44,11 @@ const riskMapping = {
   insurance: 'low',
   crypto: 'high',
 };
+// Safety check to prevent NaN errors in calculations
+export const safeNumber = (value) => {
+  return value && !isNaN(value) ? Number(value) : 0;
+}
+
 
 // Expected return ranges by risk (realistic FinTech logic)
 const returnRanges = {
