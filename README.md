@@ -155,3 +155,6 @@ src/
 - ✅ Sorting options (return, risk, min investment)
 - ✅ `prefers-reduced-motion` support
 - ✅ Fallback static dataset when API is unreachable
+
+## Notes
+This project follows component-based architecture with React Context for state management and utility-based financial calculations.
