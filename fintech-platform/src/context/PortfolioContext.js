@@ -47,6 +47,13 @@ export function PortfolioProvider({ children }) {
     );
   }, []);
 
+  // Calculates total portfolio value
+const calculateTotalValue = (assets) => {
+  return assets.reduce((total, asset) => {
+    return total + (asset.value || 0);
+  }, 0);
+};
+
   const isInPortfolio = useCallback((productId) => {
     return items.some(i => i.product.id === productId);
   }, [items]);
