@@ -3,7 +3,6 @@
  * Contains deterministic data transformation, recommendation engine,
  * and portfolio calculation logic.
  */
-
 // ─── DETERMINISTIC HELPERS ──────────────────────────────────────────
 /**
  * Generates a seeded pseudo-random number from a string seed.
@@ -11,6 +10,12 @@
  * @param {string|number} seed
  * @returns {number} 0–1 float
  */
+// Calculates compound interest
+// Formula: A = P(1 + r/n)^(nt)
+// P = principal
+// r = annual interest rate
+// n = times compounded per year
+// t = years
 function seededRandom(seed) {
   const s = String(seed);
   let hash = 0;
