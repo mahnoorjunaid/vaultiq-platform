@@ -1,3 +1,9 @@
+// =========================
+// Portfolio Page
+// Displays user investment summary
+// =========================
+
+
 import { Link } from 'react-router-dom';
 import { PortfolioSummary, PortfolioItem } from '../components';
 import { usePortfolio } from '../context/PortfolioContext';
