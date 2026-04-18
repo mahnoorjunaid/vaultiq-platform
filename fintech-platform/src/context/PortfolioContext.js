@@ -1,3 +1,8 @@
+// ===============================
+// Portfolio Context
+// Manages user investments and returns
+// ===============================
+
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { calculatePortfolioStats } from '../utils/finance';
 
@@ -21,6 +26,8 @@ export function PortfolioProvider({ children }) {
     } catch { /* quota exceeded */ }
   }, [items]);
 
+  // Adds a new asset to the portfolio
+  
   const addToPortfolio = useCallback((product, amount) => {
     setItems(prev => {
       if (prev.find(i => i.product.id === product.id)) return prev;
