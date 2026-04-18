@@ -33,6 +33,7 @@ export default function Home({ products, loading }) {
   products.forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
 
   return (
+  <div className="page-container">
     <div className="page-fade-in">
       {/* Masthead — editorial grid */}
       <div style={{ borderBottom: 'var(--border)', background: 'var(--white)' }}>
@@ -141,6 +142,7 @@ export default function Home({ products, loading }) {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }
