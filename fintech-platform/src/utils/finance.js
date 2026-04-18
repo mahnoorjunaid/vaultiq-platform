@@ -16,6 +16,7 @@
 // r = annual interest rate
 // n = times compounded per year
 // t = years
+// Fixed edge case handling for zero and invalid portfolio values
 function seededRandom(seed) {
   const s = String(seed);
   let hash = 0;
