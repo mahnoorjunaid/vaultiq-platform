@@ -87,6 +87,59 @@ const categoryIcons = {
  * @param {object} apiProduct
  * @returns {object} Financial product
  */
+
+// Financial product names by category (deterministic lookup by id)
+const financialNames = {
+  savings:    ['High-Yield Savings Account','Money Market Fund','Premium Savings Plus','Govt. Treasury Bills Fund','National Savings Certificate','Liquid Savings Plan','Fixed Deposit Scheme','Capital Protection Fund'],
+  investment: ['Equity Growth Mutual Fund','Balanced Allocation Fund','Dividend Income Fund','Small-Cap Growth Fund','Technology Sector Fund','Real Estate Income Fund','Blue-Chip Stock Fund','Index Tracker Fund'],
+  insurance:  ['Term Life Insurance Plan','Health & Life Bundle Plan','Retirement Annuity Plan','Child Education Plan','Whole Life Insurance','Critical Illness Cover','Endowment Policy','Family Takaful Plan'],
+  crypto:     ['Bitcoin Direct Investment','Ethereum Investment Pool','DeFi Yield Product','Alt-Coin Basket','Crypto Index Fund','Stablecoin Yield Account','Web3 Growth Fund','Metaverse Asset Pool'],
+};
+
+const financialDescriptions = {
+  savings: [
+    'A government-backed savings account offering competitive interest rates with full deposit protection. Ideal for emergency funds and short-term goals with guaranteed capital safety.',
+    'Low-risk fund investing in government T-Bills and short-term bank deposits. Park surplus cash with better returns than a standard account while maintaining full liquidity.',
+    'An upgraded savings tier offering higher interest rates for maintaining a minimum balance. Includes bonus interest tiers and free digital banking tools.',
+    'A fund investing exclusively in short-duration Pakistani government treasury bills. Offers sovereign debt safety with slightly better yields than standard savings.',
+    'Government-backed savings certificate with guaranteed returns and sovereign-level security. One of the safest investment vehicles available, issued by the National Savings Centre.',
+    'Flexible savings plan with tiered interest rates and instant withdrawal capability. Suitable for building an emergency fund with no lock-in period.',
+    'Fixed-term deposit offering above-market rates in exchange for a committed lock-in period. Capital is fully protected with guaranteed maturity payout.',
+    'A capital-protection fund investing in sovereign instruments. Guarantees return of principal with modest growth, ideal for risk-averse investors.',
+  ],
+  investment: [
+    'A diversified equity fund investing in blue-chip Pakistani stocks across multiple sectors. Managed by experienced fund managers with a strong track record and transparent fee structure.',
+    'A 60/40 blend of equities and fixed income instruments. Offers moderate growth with meaningful downside protection for medium-term investors.',
+    'A fund focused on high-dividend-yielding stocks from mature Pakistani corporations. Provides regular quarterly income alongside moderate capital appreciation.',
+    'High-growth potential through investments in emerging Pakistani companies across tech and manufacturing. Greater volatility offset by significant upside over the long run.',
+    'Concentrated exposure to Pakistan\'s growing technology sector including IT services, fintech, and e-commerce. Higher concentration risk offset by sector growth potential.',
+    'Indirect real estate exposure through a REIT-style structure investing in commercial properties across major Pakistani cities. Provides rental income and capital appreciation.',
+    'Invests in established, large-cap companies with consistent earnings and strong market positions. Lower volatility than broader market funds with reliable long-term returns.',
+    'Passively tracks a broad market index to deliver market-rate returns at minimal cost. Ideal for long-term investors seeking diversification without active management fees.',
+  ],
+  insurance: [
+    'Comprehensive life coverage with an investment component. Provides family protection while building long-term wealth through managed government-backed funds.',
+    'Combined health and life insurance with a savings wrapper. Monthly premiums are invested in government securities for stable, predictable returns with full coverage.',
+    'A retirement-focused insurance product with monthly annuity payouts and life coverage. Designed for long-term income security in retirement.',
+    'A long-term savings-linked plan designed to fund a child\'s education. Premiums accumulate in a protected fund with guaranteed payout upon policy maturity.',
+    'Permanent life insurance with a cash value component that grows over time. Premiums remain fixed, coverage is lifelong, and cash value can be borrowed against if needed.',
+    'Provides a lump-sum payout upon diagnosis of specified critical illnesses. Supplements health insurance to cover lost income and treatment costs.',
+    'A traditional endowment policy combining life cover with disciplined long-term savings. Matures at a fixed date with a guaranteed sum assured.',
+    'Sharia-compliant family protection plan with a savings element. Contributions are pooled and invested in halal instruments with transparent profit sharing.',
+  ],
+  crypto: [
+    'Direct exposure to Bitcoin, the largest cryptocurrency by market cap. High volatility with significant upside potential, suitable only for risk-tolerant investors with long-term conviction.',
+    'A pooled Ethereum investment offering exposure to the second-largest cryptocurrency with smart contract utility. Suitable for investors who believe in decentralised finance long-term.',
+    'Access decentralised finance yields through a managed DeFi basket. Exposure to lending protocols and liquidity pools. High risk with high potential reward for experienced investors.',
+    'A diversified basket of established alternative cryptocurrencies excluding Bitcoin. Spread across 10 coins weighted by market cap, reducing single-coin risk.',
+    'Tracks a broad crypto market index across the top 20 coins by market cap. Provides diversified digital asset exposure without single-asset concentration risk.',
+    'Earn yield on stablecoin holdings through vetted DeFi lending protocols. Lower volatility than typical crypto products while still generating above-market returns.',
+    'Growth-focused fund targeting early-stage Web3 projects and blockchain infrastructure. Extremely high risk with venture-level upside potential over a 5+ year horizon.',
+    'Exposure to metaverse platforms, NFT infrastructure, and virtual economy assets. Speculative but diversified across the emerging digital ownership ecosystem.',
+  ],
+};
+
+
 export function transformToFinancialProduct(apiProduct) {
   const category = categoryMapping[apiProduct.category] ?? 'investment';
   const riskLevel = riskMapping[category];
@@ -98,11 +151,9 @@ export function transformToFinancialProduct(apiProduct) {
 
   return {
     id: apiProduct.id,
-    name: apiProduct.title.length > 50
-      ? apiProduct.title.substring(0, 50) + '…'
-      : apiProduct.title,
+    name: financialNames[category][apiProduct.id % financialNames[category].length],
     category,
-    description: apiProduct.description,
+    description: financialDescriptions[category][apiProduct.id % financialDescriptions[category].length],
     minInvestment,
     riskLevel,
     expectedReturn,
